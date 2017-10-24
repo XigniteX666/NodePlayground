@@ -30,41 +30,26 @@ const app = express();
 //   redirect_uri: 'http://localhost:8000/callBack',
 // });
 
-app.get('/api/search/:searchTerm', (req, res) =>{
-  rp({
-   uri: 'http://rest-dev.intertoys.nl/search/resources/productView/bySearchTerm',
-   headers: {'apiKey': '7V6YCN9IBeKmyd1M0LRC1O35wWrPJ4E2'},
-   qs: {
-     profileName: 'Blokker_SearchBasicProduct',
-     searchTerm: req.params.searchTerm
-   }
- })
-   .then((data) => {
-     res.render('index', data)
-   })
-   .catch((err) => {
-     console.log(err)
-     res.render('error')
-   })
-})
-
 
 app.get('/callback', (req, res) => {
-  console.log(req.originalUrl)
-  githubAuth.credentials.getToken(req.originalUrl)
-  .then(function (user) {
-    console.log(user) //=> { accessToken: '...', tokenType: 'bearer', ... }
-  })
+  console.log('In callback');
+  githubAuth.credentials.getToken(req.originalUrl);
+  // .then(function (user) {
+  //   console.log(user) //=> { accessToken: '...', tokenType: 'bearer', ... }
+  // })
+    console.log('Outside callback');
+    res.send("Logged in");
 });
 
 // Initial page redirecting to Github
 app.get('/auth', (req, res) => {
-  var uri = githubAuth.code.getUri()
+  var uri = githubAuth.code.getUri();
+  console.log(uri);
   res.redirect(uri)
 });
 
 app.get('/', (req, res) => {
-  res.send('Hello<br><a href="/auth">Log in with Github</a>');
+  res.send('Hello<br><a href="/auth">Log in with Strava</a>');
 });
 
 app.listen(8000, () => {
