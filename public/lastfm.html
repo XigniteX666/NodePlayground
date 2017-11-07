@@ -1,0 +1,38 @@
+<html>
+
+<head>
+  <title>My Music Page</title>
+</head>
+
+<body>
+  <div id="app">
+    Zoek een band  <input v-model="searchTerm">
+    <button v-on:click="searchArtist">Zoek</button>
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <ol>
+        <li v-for="artist in artistList">
+          <span v-on:click="getArtistDetails(artist.mbid)">{{ artist.name }}</span>
+        </li>
+      </ol>
+    </td>
+    <td width="50%" valign="top">
+      <span v-if="artistDetails.description">
+        Details about {{ artistDetails.name }} <br />
+        <img v-bind:src="artistDetails.image" /> <br />
+
+
+         {{ artistDetails.description }}
+      </span>
+    </td>
+  </tr>
+  </table>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+  <script src="lastfm.js"></script>
+    <script src="artist.js"></script>
+</body>
+
+</html>

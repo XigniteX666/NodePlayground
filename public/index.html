@@ -1,0 +1,22 @@
+<html>
+
+<head>
+  <title>My Strava Page</title>
+</head>
+
+<body>
+  <div id="app">
+    Hello {{ user.firstname }} <br/>
+
+    <ol>
+      <li v-for="activity in activities">
+        {{ activity.id }} -- {{activity.start_date}} -- {{ activity.average_heartrate}} -- {{ activity.average_speed}}
+      </li>
+    </ol>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+  <script src="javascript.js"></script>
+</body>
+
+</html>
